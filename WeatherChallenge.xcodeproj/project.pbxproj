@@ -14,6 +14,7 @@
 		8C7A3E422A16DFD8004BC2BF /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A3E412A16DFD8004BC2BF /* WeatherResponse.swift */; };
 		8C7A3E442A16E260004BC2BF /* GeocodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A3E432A16E260004BC2BF /* GeocodeResponse.swift */; };
 		8C7A3E472A16E47F004BC2BF /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A3E462A16E47F004BC2BF /* WeatherViewModel.swift */; };
+		8C7A3E492A16E61B004BC2BF /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A3E482A16E61B004BC2BF /* NetworkingManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		8C7A3E412A16DFD8004BC2BF /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
 		8C7A3E432A16E260004BC2BF /* GeocodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeResponse.swift; sourceTree = "<group>"; };
 		8C7A3E462A16E47F004BC2BF /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		8C7A3E482A16E61B004BC2BF /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				8C7A3E332A16CC79004BC2BF /* WeatherChallengeApp.swift */,
 				8C7A3E352A16CC79004BC2BF /* WeatherView.swift */,
 				8C7A3E462A16E47F004BC2BF /* WeatherViewModel.swift */,
+				8C7A3E482A16E61B004BC2BF /* NetworkingManager.swift */,
 				8C7A3E452A16E353004BC2BF /* Model */,
 				8C7A3E372A16CC7A004BC2BF /* Assets.xcassets */,
 				8C7A3E392A16CC7A004BC2BF /* Preview Content */,
@@ -157,6 +160,7 @@
 				8C7A3E472A16E47F004BC2BF /* WeatherViewModel.swift in Sources */,
 				8C7A3E362A16CC79004BC2BF /* WeatherView.swift in Sources */,
 				8C7A3E442A16E260004BC2BF /* GeocodeResponse.swift in Sources */,
+				8C7A3E492A16E61B004BC2BF /* NetworkingManager.swift in Sources */,
 				8C7A3E422A16DFD8004BC2BF /* WeatherResponse.swift in Sources */,
 				8C7A3E342A16CC79004BC2BF /* WeatherChallengeApp.swift in Sources */,
 			);
