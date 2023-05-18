@@ -13,11 +13,13 @@ struct WeatherResponse: Codable {
     let visibility: Int
     let wind: Wind
     let clouds: Clouds
-    let dt: Int
+    let date: Date
     let sys: Sys
+    let name: String
     
-    enum CodingKeys: CodingKey {
-        case weather, main, visibility, wind, clouds, dt, sys
+    enum CodingKeys: String, CodingKey {
+        case weather, main, visibility, wind, clouds, sys, name
+        case date = "dt"
     }
 }
 
@@ -41,10 +43,11 @@ struct Main: Codable {
 }
 
 struct Sys: Codable {
-    let sunrise, sunset: Int
+    let country: String
+    let sunrise, sunset: Date
     
     enum CodingKeys: CodingKey {
-        case sunrise, sunset
+        case country, sunrise, sunset
     }
 }
 
