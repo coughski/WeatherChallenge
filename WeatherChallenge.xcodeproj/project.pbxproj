@@ -57,8 +57,7 @@
 			children = (
 				8C7A3E332A16CC79004BC2BF /* WeatherChallengeApp.swift */,
 				8C7A3E352A16CC79004BC2BF /* ContentView.swift */,
-				8C7A3E412A16DFD8004BC2BF /* WeatherResponse.swift */,
-				8C7A3E432A16E260004BC2BF /* GeocodeResponse.swift */,
+				8C7A3E452A16E353004BC2BF /* Model */,
 				8C7A3E372A16CC7A004BC2BF /* Assets.xcassets */,
 				8C7A3E392A16CC7A004BC2BF /* Preview Content */,
 			);
@@ -71,6 +70,15 @@
 				8C7A3E3A2A16CC7A004BC2BF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8C7A3E452A16E353004BC2BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8C7A3E412A16DFD8004BC2BF /* WeatherResponse.swift */,
+				8C7A3E432A16E260004BC2BF /* GeocodeResponse.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
