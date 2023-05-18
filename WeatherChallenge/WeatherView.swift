@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WeatherView: View {
+    @StateObject private var viewModel = WeatherViewModel()
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
