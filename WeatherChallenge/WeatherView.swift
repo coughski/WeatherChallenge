@@ -11,19 +11,32 @@ struct WeatherView: View {
     @StateObject private var viewModel = WeatherViewModel()
     
     var body: some View {
-        VStack {
-            if let weather = viewModel.weather {
-                Text("\(weather.name), \(weather.sys.country)")
-                Text("\(weather.main.temp)")
-                Text("\(weather.date)")
-            } else {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundColor(.accentColor)
-                Text("No weather data")
+        NavigationStack {
+            ScrollView {
+                VStack {
+                    if let weather = viewModel.weather {
+                        if weather.weather.count > 0 {
+                            AsyncImage(url: URL(string: "https://openweathermap.org/img/wn/\(weather.weather[0].icon)@2x.png"))
+                        }
+                        
+                        Text(weather.main.temp, format: .number)
+                            .font(.title)
+                        Text("\(weather.name), \(weather.sys.country)")
+                        Text(weather.date, format: .dateTime)
+                    } else {
+                        Image(systemName: "globe")
+                            .imageScale(.large)
+                            .foregroundColor(.accentColor)
+                        Text("No weather data")
+                    }
+                }
+                .padding()
             }
+            .refreshable {
+                await viewModel.fetchWeatherData()
+            }
+            .searchable(text: $viewModel.search)
         }
-        .padding()
         .task {
             await viewModel.fetchWeatherData()
         }
