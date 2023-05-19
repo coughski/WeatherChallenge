@@ -10,7 +10,7 @@ import SwiftUI
 @MainActor
 final class WeatherViewModel: ObservableObject {
     @Published private(set) var weather: WeatherResponse?
-    @Published private(set) var geocodes: GeocodeResponse?
+    @Published var geocodes: GeocodeResponse?
     @Published var search = ""
     
     func fetchWeatherData() async {
