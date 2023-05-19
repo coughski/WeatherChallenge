@@ -25,7 +25,16 @@ struct WeatherView: View {
                             VStack(alignment: .leading) {
                                 Text(Measurement(value: weather.main.temp, unit: UnitTemperature.fahrenheit).converted(to: UnitTemperature(forLocale: .current)).formatted())
                                     .font(.title)
+                                HStack {
+                                    Text(Measurement(value: weather.main.tempMin, unit: UnitTemperature.fahrenheit).converted(to: UnitTemperature(forLocale: .current)).formatted())
+                                    Text(Measurement(value: weather.main.tempMax, unit: UnitTemperature.fahrenheit).converted(to: UnitTemperature(forLocale: .current)).formatted())
+                                }
+                                Text(weather.weather[0].description.capitalized)
                                 Text("\(weather.name), \(weather.sys.country)")
+                                
+                                Text(weather.sys.sunrise, format: .dateTime)
+                                Text(weather.sys.sunset, format: .dateTime)
+                                
                                 Text(weather.date, format: .dateTime)
                             }
                         }
@@ -44,12 +53,14 @@ struct WeatherView: View {
             .searchable(text: $viewModel.search)
         }
         .task {
+            viewModel.load()
             await viewModel.fetchWeatherData()
         }
         .task(id: viewModel.search) {
             try? await Task.sleep(for: .seconds(1))
             await viewModel.fetchGeocodeData()
             await viewModel.fetchWeatherData()
+            viewModel.save()
         }
     }
 }

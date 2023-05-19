@@ -31,4 +31,16 @@ final class WeatherViewModel: ObservableObject {
             geocodes = try? await NetworkingManager.shared.request("https://api.openweathermap.org/geo/1.0/direct?q=\(search)&appid=90231232321e8908510b11ed59344b46")
         }
     }
+    
+    private static let lastWeatherKey = "lastWeatherCoords"
+    
+    func save() {
+        let encoded = try? JSONEncoder().encode(geocodes)
+        UserDefaults.standard.setValue(encoded, forKey: Self.lastWeatherKey)
+    }
+    
+    func load() {
+        let data = UserDefaults.standard.data(forKey: Self.lastWeatherKey)
+        geocodes = try? JSONDecoder().decode(GeocodeResponse.self, from: data ?? Data())
+    }
 }
