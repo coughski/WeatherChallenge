@@ -64,8 +64,7 @@
 				8C7A3E332A16CC79004BC2BF /* WeatherChallengeApp.swift */,
 				8C7A3E352A16CC79004BC2BF /* WeatherView.swift */,
 				8C7A3E462A16E47F004BC2BF /* WeatherViewModel.swift */,
-				8C7A3E482A16E61B004BC2BF /* NetworkingManager.swift */,
-				8C7A3E4A2A1725FA004BC2BF /* LocationManager.swift */,
+				8C7A3E4C2A17C497004BC2BF /* Services */,
 				8C7A3E452A16E353004BC2BF /* Model */,
 				8C7A3E372A16CC7A004BC2BF /* Assets.xcassets */,
 				8C7A3E392A16CC7A004BC2BF /* Preview Content */,
@@ -88,6 +87,15 @@
 				8C7A3E432A16E260004BC2BF /* GeocodeResponse.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		8C7A3E4C2A17C497004BC2BF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8C7A3E482A16E61B004BC2BF /* NetworkingManager.swift */,
+				8C7A3E4A2A1725FA004BC2BF /* LocationManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
