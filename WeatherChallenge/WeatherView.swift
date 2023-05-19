@@ -18,6 +18,7 @@ struct WeatherView: View {
                 VStack(alignment: .leading) {
                     if let weather = viewModel.weather {
                         HStack(alignment: .lastTextBaseline) {
+                            
                             VStack(alignment: .leading) {
                                 if weather.weather.count > 0 {
                                     AsyncImage(url: URL(string: "https://openweathermap.org/img/wn/\(weather.weather[0].icon)@2x.png"))
@@ -35,11 +36,8 @@ struct WeatherView: View {
                                     Text(Measurement(value: weather.main.tempMax, unit: UnitTemperature.fahrenheit).formatted())
                                 }
                                 
-                                Group {
-                                    
-                                    Text("\(weather.name), \(weather.sys.country)")
-                                }
-                                
+                                Text("\(weather.name), \(weather.sys.country)")
+                                    .lineLimit(1)
                                 Text(weather.date, format: .dateTime.hour().minute())
                             }
                             
@@ -58,7 +56,6 @@ struct WeatherView: View {
                                     HStack {
                                         Image(systemName: "humidity")
                                             .symbolRenderingMode(.hierarchical)
-//                                            .foregroundStyle(.teal, .primary)
                                         Text(weather.main.humidity, format: .percent)
                                     }
                                     
@@ -69,29 +66,20 @@ struct WeatherView: View {
                                 }
                                 
                                 HStack {
-                                    Label {
-                                        Text("Sunrise")
-                                    } icon: {
-                                        Image(systemName: "sunrise")
-                                            .symbolRenderingMode(.palette)
-                                            .foregroundStyle(.primary, .red)
-                                    }
-                                    .labelStyle(.iconOnly)
+                                    Image(systemName: "sunrise")
+                                        .symbolRenderingMode(.palette)
+                                        .foregroundStyle(.primary, .red)
                                     Text(weather.sys.sunrise, format: .dateTime.hour().minute())
                                 }
                                 
                                 HStack {
-                                    Label {
-                                        Text("Sunset")
-                                    } icon: {
-                                        Image(systemName: "sunset")
-                                            .symbolRenderingMode(.palette)
-                                            .foregroundStyle(.primary, .red)
-                                    }
-                                    .labelStyle(.iconOnly)
+                                    Image(systemName: "sunset")
+                                        .symbolRenderingMode(.palette)
+                                        .foregroundStyle(.primary, .red)
                                     Text(weather.sys.sunset, format: .dateTime.hour().minute())
                                 }
                             }
+                            
                         }
                         .padding()
                         .background {
@@ -122,10 +110,12 @@ struct WeatherView: View {
             await viewModel.fetchWeatherData()
         }
         .task(id: viewModel.search) {
-            try? await Task.sleep(for: .seconds(1))
-            await viewModel.fetchGeocodeData()
-            viewModel.save()
-            await viewModel.fetchWeatherData()
+            if !viewModel.search.isEmpty {
+                try? await Task.sleep(for: .seconds(1))
+                await viewModel.fetchGeocodeData()
+                viewModel.save()
+                await viewModel.fetchWeatherData()
+            }
         }
         .onChange(of: locationManager.location) { location in
             if let location {
