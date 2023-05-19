@@ -7,9 +7,7 @@
 
 import Foundation
 
-struct GeocodeResponse: Codable {
-    let geocodes: [Geocode]
-}
+typealias GeocodeResponse = [Geocode]
 
 struct Geocode: Codable {
     let lat, lon: Double

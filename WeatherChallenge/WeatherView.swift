@@ -15,14 +15,20 @@ struct WeatherView: View {
             ScrollView {
                 VStack {
                     if let weather = viewModel.weather {
-                        if weather.weather.count > 0 {
-                            AsyncImage(url: URL(string: "https://openweathermap.org/img/wn/\(weather.weather[0].icon)@2x.png"))
+                        HStack {
+                            VStack {
+                                if weather.weather.count > 0 {
+                                    AsyncImage(url: URL(string: "https://openweathermap.org/img/wn/\(weather.weather[0].icon)@2x.png"))
+                                }
+                            }
+                            
+                            VStack(alignment: .leading) {
+                                Text(Measurement(value: weather.main.temp, unit: UnitTemperature.fahrenheit).converted(to: UnitTemperature(forLocale: .current)).formatted())
+                                    .font(.title)
+                                Text("\(weather.name), \(weather.sys.country)")
+                                Text(weather.date, format: .dateTime)
+                            }
                         }
-                        
-                        Text(weather.main.temp, format: .number)
-                            .font(.title)
-                        Text("\(weather.name), \(weather.sys.country)")
-                        Text(weather.date, format: .dateTime)
                     } else {
                         Image(systemName: "globe")
                             .imageScale(.large)
@@ -38,6 +44,11 @@ struct WeatherView: View {
             .searchable(text: $viewModel.search)
         }
         .task {
+            await viewModel.fetchWeatherData()
+        }
+        .task(id: viewModel.search) {
+            try? await Task.sleep(for: .seconds(1))
+            await viewModel.fetchGeocodeData()
             await viewModel.fetchWeatherData()
         }
     }
